@@ -106,7 +106,7 @@ const ProjectUpload = () => {
       form.append("image", image);
 
       const res = await axios.post(
-        "http://localhost:5000/api/projects/upload",
+        "https://fiver-portfolio-backend.onrender.com/api/projects/upload",
         form,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

@@ -31,7 +31,7 @@ const Portfolio = () => {
 
   const getAllProjects = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/projects");
+      const res = await axios.get("https://fiver-portfolio-backend.onrender.com/api/projects");
       console.log(res.data.project);
 
       setProjects(res.data.project || [])
