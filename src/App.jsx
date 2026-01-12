@@ -12,7 +12,7 @@ function App() {
     <>
     <Routes>
       <Route path='/' element={<Portfolio/>}/>
-             <Route path='/ProjectUpload' element={<ProjectUpload/>}/>
+             <Route path='/upload' element={<ProjectUpload/>}/>
 
     </Routes>
      

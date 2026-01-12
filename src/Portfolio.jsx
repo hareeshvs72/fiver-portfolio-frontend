@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Github, 
-  ExternalLink, 
-  Mail, 
-  Code2, 
-  User, 
-  Cpu, 
-  Briefcase, 
+import axios from "axios";
+import {
+  Github,
+  ExternalLink,
+  Mail,
+  Code2,
+  User,
+  Cpu,
+  Briefcase,
   Send,
   Terminal,
   ChevronRight,
@@ -23,6 +24,26 @@ const Portfolio = () => {
   const [progress, setProgress] = useState(0);
   const mainRef = useRef(null);
   const [gsapLoaded, setGsapLoaded] = useState(false);
+  const [projects, setProjects] = useState([]);
+  useEffect(() => {
+    getAllProjects();
+  }, []);
+
+  const getAllProjects = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/projects");
+      console.log(res.data.project);
+
+      setProjects(res.data.project || [])
+
+    } catch (error) {
+      console.error("Failed to fetch projects", error);
+    }
+  };
+  useEffect(() => {
+    console.log(projects);
+
+  }, [projects])
 
   // Preloader Logic
   useEffect(() => {
@@ -42,6 +63,7 @@ const Portfolio = () => {
   }, []);
 
   // Load GSAP via Script tags
+
   useEffect(() => {
     const loadScript = (src) => {
       return new Promise((resolve) => {
@@ -65,12 +87,16 @@ const Portfolio = () => {
   // Update header based on scroll position using IntersectionObserver
   useEffect(() => {
     const sections = ['home', 'about', 'skills', 'projects', 'contact'];
-    
+
     const observerOptions = {
       root: null,
-      rootMargin: '-40% 0px -40% 0px', 
+      rootMargin: '-40% 0px -40% 0px',
       threshold: 0
     };
+
+    // get all projects
+
+
 
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
@@ -112,7 +138,7 @@ const Portfolio = () => {
 
       // 2. Dynamic Horizontal Scroll for Projects
       const container = document.querySelector(".projects-wrapper");
-      
+
       if (container) {
         const totalScrollDistance = container.scrollWidth - window.innerWidth;
 
@@ -126,7 +152,7 @@ const Portfolio = () => {
             invalidateOnRefresh: true,
             end: () => `+=${totalScrollDistance}`,
             onUpdate: (self) => {
-               gsap.to(".scroll-progress-bar", { scaleX: self.progress, duration: 0.1 });
+              gsap.to(".scroll-progress-bar", { scaleX: self.progress, duration: 0.1 });
             }
           }
         });
@@ -165,16 +191,16 @@ const Portfolio = () => {
     image: `https://images.unsplash.com/photo-${1460925895917 + i}-afdab827c52f?auto=format&fit=crop&q=60&w=800`
   }));
 
-  const displayedProjects = allProjects.slice(0, visibleProjects);
+  const displayedProjects = projects.slice(0, visibleProjects);
 
   return (
     <div ref={mainRef} className="bg-[#0a0a0a] text-white selection:bg-cyan-500 selection:text-white overflow-x-hidden">
-      
+
       {/* Preloader Overlay */}
       {loading && (
         <div className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center transition-opacity duration-500">
           <div className="w-64 h-[2px] bg-white/10 rounded-full relative overflow-hidden mb-4">
-            <div 
+            <div
               className="absolute top-0 left-0 h-full bg-cyan-400 transition-all duration-300 ease-out"
               style={{ width: `${progress}%` }}
             ></div>
@@ -205,26 +231,26 @@ const Portfolio = () => {
 
       {/* Main Content (Wrapped in opacity for preloader transition) */}
       <div className={`transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}>
-        
+
         {/* Hero Section */}
         <section id="home" className="min-h-screen flex flex-col items-center justify-center relative px-4 overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
-              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/30 rounded-full blur-[120px] animate-pulse"></div>
-              <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px]"></div>
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/30 rounded-full blur-[120px] animate-pulse"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px]"></div>
           </div>
-          
+
           <div className="text-center z-10">
             <h2 className="reveal text-cyan-400 font-mono mb-4 text-lg">Hi, my name is</h2>
             <h1 className="reveal text-6xl md:text-8xl font-black mb-6 bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent leading-none">
-              ALEX RIVERA.
+             HAREESH VS
             </h1>
             <p className="reveal text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
               I build <span className="text-white italic">resilient</span> digital experiences through full-stack craftsmanship.
             </p>
             <div className="reveal mt-10">
-              <button 
-                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                 className="group relative px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-all hover:pr-12"
+              <button
+                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                className="group relative px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-all hover:pr-12"
               >
                 <span className="relative z-10">View My Work</span>
                 <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all" />
@@ -237,8 +263,8 @@ const Portfolio = () => {
         <section id="about" className="py-32 px-4 max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative aspect-square bg-gray-900 rounded-3xl overflow-hidden group shadow-2xl shadow-cyan-500/10">
-              <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" 
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                 alt="Profile"
               />
@@ -249,19 +275,19 @@ const Portfolio = () => {
                 <User size={20} />
                 <span className="font-mono text-sm uppercase tracking-widest">About Me</span>
               </div>
-              <h3 className="text-4xl font-bold mb-6">Designing logic, <br/> building emotion.</h3>
+              <h3 className="text-4xl font-bold mb-6">Designing logic, <br /> building emotion.</h3>
               <p className="text-gray-400 text-lg leading-relaxed mb-6">
                 I specialize in bridging the gap between sophisticated design and robust backend architecture. With a focus on performance and user-centric flows, I transform complex requirements into elegant code.
               </p>
               <div className="grid grid-cols-2 gap-4">
-                 <div className="p-4 bg-white/5 border border-white/10 rounded-2xl">
-                    <h4 className="text-2xl font-bold text-white">4+</h4>
-                    <p className="text-gray-400 text-sm">Years Experience</p>
-                 </div>
-                 <div className="p-4 bg-white/5 border border-white/10 rounded-2xl">
-                    <h4 className="text-2xl font-bold text-white">{allProjects.length}+</h4>
-                    <p className="text-gray-400 text-sm">Projects Delivered</p>
-                 </div>
+                <div className="p-4 bg-white/5 border border-white/10 rounded-2xl">
+                  <h4 className="text-2xl font-bold text-white">6+</h4>
+                  <p className="text-gray-400 text-sm">Month Experience</p>
+                </div>
+                <div className="p-4 bg-white/5 border border-white/10 rounded-2xl">
+                  <h4 className="text-2xl font-bold text-white">{projects.length}+</h4>
+                  <p className="text-gray-400 text-sm">Projects Delivered</p>
+                </div>
               </div>
             </div>
           </div>
@@ -275,11 +301,11 @@ const Portfolio = () => {
               <h3 className="text-4xl font-bold">Tech Stack</h3>
               <div className="h-1 w-20 bg-cyan-500 mt-4 rounded-full"></div>
             </div>
-            
+
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {skills.map((skill, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className="group p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-cyan-500/50 transition-all duration-300 flex flex-col items-center gap-4"
                 >
                   <div className={`${skill.color} p-4 rounded-2xl bg-opacity-10 text-white group-hover:scale-110 transition-transform`}>
@@ -295,72 +321,84 @@ const Portfolio = () => {
         {/* Projects Section - Horizontal Scroll */}
         <section id="projects" className="projects-container min-h-screen bg-black flex flex-col justify-center relative overflow-hidden">
           <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-white/10 rounded-full overflow-hidden z-20">
-              <div className="scroll-progress-bar h-full bg-cyan-400 w-full origin-left scale-x-0"></div>
+            <div className="scroll-progress-bar h-full bg-cyan-400 w-full origin-left scale-x-0"></div>
           </div>
 
           <div className="projects-wrapper flex flex-nowrap items-center px-[5vw] gap-8 py-20">
             <div className="flex-shrink-0 w-[400px] pr-8">
-               <div className="text-cyan-400 font-mono text-xs mb-3 tracking-widest uppercase">Portfolio</div>
-               <h3 className="text-5xl font-black leading-[0.9] mb-6 uppercase tracking-tighter">
-                 Selected<br/>
-                 <span className="text-transparent" style={{ WebkitTextStroke: '1px white' }}>Works</span>
-               </h3>
-               <p className="text-gray-500 text-sm leading-relaxed max-w-[300px]">
-                 Showcasing refined full-stack engineering and design logic.
-               </p>
+              <div className="text-cyan-400 font-mono text-xs mb-3 tracking-widest uppercase">Portfolio</div>
+              <h3 className="text-5xl font-black leading-[0.9] mb-6 uppercase tracking-tighter">
+                Selected<br />
+                <span className="text-transparent" style={{ WebkitTextStroke: '1px white' }}>Works</span>
+              </h3>
+              <p className="text-gray-500 text-sm leading-relaxed max-w-[300px]">
+                Showcasing refined full-stack engineering and design logic.
+              </p>
             </div>
-            
+
             {displayedProjects.map((proj) => (
-              <div key={proj.id} className="project-card flex-shrink-0 w-[320px] md:w-[400px] group">
+              <div key={proj._id} className="project-card flex-shrink-0 w-[320px] md:w-[400px] group">
                 <div className="relative overflow-hidden rounded-[2rem] bg-zinc-900 border border-white/10 p-3 transition-all duration-500 hover:border-cyan-500/30">
                   <div className="overflow-hidden rounded-[1.5rem] relative aspect-[16/10]">
-                    <img 
-                      src={proj.image} 
+                    <img
+                      src={proj?.imageUrl}
                       className="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-                      alt={proj.title}
+                      alt={proj?.title}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                   </div>
-                  
+
                   <div className="pt-5 pb-1 px-3">
                     <div className="flex gap-2 mb-3">
-                      {proj.tags.slice(0, 2).map(t => (
+                      {proj?.tags.slice(0, 2).map(t => (
                         <span key={t} className="text-[8px] font-bold uppercase tracking-widest px-2 py-0.5 bg-white/5 border border-white/10 rounded-full text-gray-400">
                           {t}
                         </span>
                       ))}
                     </div>
-                    <h4 className="text-xl font-black mb-2 group-hover:text-cyan-400 transition-colors tracking-tight">{proj.title}</h4>
-                    <p className="text-gray-500 text-xs mb-5 line-clamp-2 leading-relaxed">{proj.desc}</p>
-                    
+                    <h4 className="text-xl font-black mb-2 group-hover:text-cyan-400 transition-colors tracking-tight">{proj?.title}</h4>
+                    <p className="text-gray-500 text-xs mb-5 line-clamp-2 leading-relaxed">{proj.description}</p>
+
                     <div className="grid grid-cols-2 gap-2">
-                      <button className="flex items-center justify-center gap-2 bg-white text-black py-2.5 rounded-lg font-bold text-[10px] hover:bg-cyan-400 transition-all active:scale-95">
+                      <a
+                        href={proj?.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 bg-white text-black py-2.5 rounded-lg font-bold text-[10px] hover:bg-cyan-400 transition-all active:scale-95"
+                      >
                         <ExternalLink size={12} /> LIVE
-                      </button>
-                      <button className="flex items-center justify-center gap-2 bg-white/5 border border-white/10 py-2.5 rounded-lg font-bold text-[10px] hover:bg-white/10 transition-all active:scale-95">
+                      </a>
+
+                      <a
+                        href={proj?.codeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 bg-white/5 border border-white/10 py-2.5 rounded-lg font-bold text-[10px] hover:bg-white/10 transition-all active:scale-95"
+                      >
                         <Code2 size={12} /> CODE
-                      </button>
+                      </a>
                     </div>
+
                   </div>
                 </div>
               </div>
             ))}
 
             {/* Show More Button Card */}
-            {visibleProjects < allProjects.length && (
+            {visibleProjects < projects.length && (
               <div className="flex-shrink-0 w-[280px] px-2">
-                  <button 
-                    onClick={handleShowMore}
-                    className="group relative w-full aspect-[4/5] flex flex-col items-center justify-center gap-3 bg-white/[0.02] border-2 border-dashed border-white/10 rounded-[2rem] hover:border-cyan-400 hover:bg-white/[0.04] transition-all"
-                  >
-                    <div className="p-4 bg-cyan-500 text-black rounded-full group-hover:scale-110 transition-transform">
-                      <Plus size={24} />
-                    </div>
-                    <div className="text-center">
-                      <span className="block font-black text-base tracking-tight uppercase">Show More</span>
-                      <span className="text-gray-500 text-[10px] font-mono tracking-widest uppercase mt-1">({allProjects.length - visibleProjects} more)</span>
-                    </div>
-                  </button>
+                <button
+                  onClick={handleShowMore}
+                  className="group relative w-full aspect-[4/5] flex flex-col items-center justify-center gap-3 bg-white/[0.02] border-2 border-dashed border-white/10 rounded-[2rem] hover:border-cyan-400 hover:bg-white/[0.04] transition-all"
+                >
+                  <div className="p-4 bg-cyan-500 text-black rounded-full group-hover:scale-110 transition-transform">
+                    <Plus size={24} />
+                  </div>
+                  <div className="text-center">
+                    <span className="block font-black text-base tracking-tight uppercase">Show More</span>
+                    <span className="text-gray-500 text-[10px] font-mono tracking-widest uppercase mt-1">({projects.length - visibleProjects} more)</span>
+                  </div>
+                </button>
               </div>
             )}
 
@@ -375,14 +413,14 @@ const Portfolio = () => {
               <div>
                 <h3 className="text-4xl font-bold mb-6">Let's build something <span className="text-cyan-400 italic">remarkable</span>.</h3>
                 <p className="text-gray-400 mb-8">Currently available for freelance projects and full-time collaborations.</p>
-                
+
                 <div className="space-y-4">
                   <a href="mailto:hello@alexrivera.com" className="flex items-center gap-4 text-gray-300 hover:text-cyan-400 transition-colors">
                     <div className="p-3 bg-white/5 rounded-xl"><Mail size={20} /></div>
-                    hello@alexrivera.com
+                    hareeshvs72@gmail.com
                   </a>
                   <div className="flex gap-4 mt-10">
-                    <button className="p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-cyan-500/50 transition-all hover:-translate-y-1">
+                    <button  className="p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-cyan-500/50 transition-all hover:-translate-y-1">
                       <Github size={24} />
                     </button>
                     <button className="p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-cyan-500/50 transition-all hover:-translate-y-1">
@@ -391,21 +429,21 @@ const Portfolio = () => {
                   </div>
                 </div>
               </div>
-              
+
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                <input 
-                  type="text" 
-                  placeholder="Name" 
+                <input
+                  type="text"
+                  placeholder="Name"
                   className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-cyan-500 transition-colors"
                 />
-                <input 
-                  type="email" 
-                  placeholder="Email" 
+                <input
+                  type="email"
+                  placeholder="Email"
                   className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-cyan-500 transition-colors"
                 />
-                <textarea 
-                  rows="4" 
-                  placeholder="Tell me about your project..." 
+                <textarea
+                  rows="4"
+                  placeholder="Tell me about your project..."
                   className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-cyan-500 transition-colors resize-none"
                 ></textarea>
                 <button className="w-full py-4 bg-cyan-500 text-black font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-cyan-400 transition-colors">
@@ -417,7 +455,7 @@ const Portfolio = () => {
         </section>
 
         <footer className="py-10 text-center text-gray-600 text-sm border-t border-white/5">
-          &copy; {new Date().getFullYear()} Alex Rivera. Handcrafted with React & GSAP.
+          &copy; {new Date().getFullYear()} Hareesh VS. Handcrafted with React & GSAP.
         </footer>
       </div>
     </div>
