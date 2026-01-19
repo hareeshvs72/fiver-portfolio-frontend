@@ -19,7 +19,7 @@ import {
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
-  const [visibleProjects, setVisibleProjects] = useState(4);
+  const [visibleProjects, setVisibleProjects] = useState(3);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const mainRef = useRef(null);
@@ -264,7 +264,7 @@ const Portfolio = () => {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative aspect-square bg-gray-900 rounded-3xl overflow-hidden group shadow-2xl shadow-cyan-500/10">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
+                src=""
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                 alt="Profile"
               />
