@@ -12,6 +12,8 @@ function App() {
     <>
     <Routes>
       <Route path='/' element={<Portfolio/>}/>
+            {/* <Route path='/h' element={<Header/>}/> */}
+
              <Route path='/upload' element={<ProjectUpload/>}/>
 
     </Routes>
