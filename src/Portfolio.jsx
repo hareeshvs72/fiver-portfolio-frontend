@@ -3,6 +3,7 @@ import { Menu, X } from 'lucide-react';
 import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
+import Skill from './components/Skill';
 
 /**
  * GLASS PILL NAVIGATION COMPONENT
@@ -289,14 +290,12 @@ const App = () => {
         activeHref={activeSection}
         onNavigate={setActiveSection}
       />
-      <Home id="home"/>
-      <About id="about"/>
-      {/* <Section  title="HOME" colorClass="bg-slate-50 dark:bg-slate-950" /> */}
-      <Section id="skills" title="SKILLS" colorClass="bg-slate-100 dark:bg-slate-900" />
-      <Section id="projects" title="PROJECTS" colorClass="bg-slate-200 dark:bg-slate-800" />
-      {/* <Section id="about" title="ABOUT" colorClass="bg-slate-100 dark:bg-slate-900" /> */}
-      {/* <Section id="contact" title="CONTACT" colorClass="bg-orange-50 dark:bg-slate-950" /> */}
-      <Contact/>
+     <Home id="home" />
+<About id="about" />
+<Skill id="skills" />
+<Section id="projects" title="PROJECTS" colorClass="bg-slate-200 dark:bg-slate-800" />
+<Contact />
+
     </div>
   );
 };
