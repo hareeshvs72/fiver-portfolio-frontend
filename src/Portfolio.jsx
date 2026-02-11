@@ -4,6 +4,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
 import Skill from './components/Skill';
+import Project from './components/Project';
 
 /**
  * GLASS PILL NAVIGATION COMPONENT
@@ -293,7 +294,8 @@ const App = () => {
      <Home id="home" />
 <About id="about" />
 <Skill id="skills" />
-<Section id="projects" title="PROJECTS" colorClass="bg-slate-200 dark:bg-slate-800" />
+<Project id="projects" />
+{/* <Section id="projects" title="PROJECTS" colorClass="bg-slate-200 dark:bg-slate-800" /> */}
 <Contact />
 
     </div>
