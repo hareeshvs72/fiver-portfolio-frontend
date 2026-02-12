@@ -143,14 +143,25 @@ const Home = () => {
             <p className="text-slate-400 text-base md:text-xl leading-relaxed mb-8 lg:mb-10 font-medium">
               Specializing in both <span className="text-white">React (MERN)</span> and <span className="text-white">Angular (MEAN)</span> ecosystems. I bridge the gap between high-performance backends and intuitive, scalable frontends.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 w-full sm:w-auto">
-              <button className="group relative px-8 py-4 overflow-hidden rounded-lg bg-orange-600 text-white font-mono font-bold text-xs transition-all hover:shadow-[0_0_40px_rgba(234,88,12,0.3)] active:scale-95 text-center sm:text-left">
-                <span className="relative z-10">$ view_repositories</span>
-                <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-              </button>
-              <button className="group px-8 py-4 rounded-lg border border-white/10 text-slate-300 font-mono font-bold text-xs transition-all hover:bg-white/5 active:scale-95 text-center sm:text-left">
-                download_cv.pdf
+            <a href='https://github.com/hareeshvs72' target='_blank' className="relative z-10 ">
+                <button className="group relative px-8 py-4 overflow-hidden rounded-lg bg-orange-600 text-white font-mono font-bold text-xs transition-all cursor-crosshair hover:shadow-[0_0_40px_rgba(234,88,12,0.3)] active:scale-95 text-center sm:text-left">
+                  $ view_repositories
+                  <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                </button>
+            </a>
+              <button  >
+
+                <a
+                  className="group px-8 py-4 rounded-lg border border-white/10 text-slate-300 font-mono font-bold text-xs transition-all hover:bg-white/5 active:scale-95 text-center sm:text-left"
+                  href="/Hareesh_Vs.pdf"
+                  download
+                >
+                  download_cv.pdf
+
+                </a>
+
               </button>
             </div>
           </div>
@@ -178,23 +189,24 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="hidden sm:block">
+          {/* devops */}
+          {/* <div className="hidden sm:block">
             <h4 className="text-orange-500 font-mono text-[10px] uppercase tracking-widest mb-2">// dev_ops</h4>
             <p className="text-slate-300 font-mono text-xs">Docker, AWS, Firebase, CI/CD Pipelines</p>
-          </div>
+          </div> */}
         </div>
       </div>
 
-      <div className="absolute inset-0 z-[1] pointer-events-none opacity-[0.05]" 
-           style={{ backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
+      <div className="absolute inset-0 z-[1] pointer-events-none opacity-[0.05]"
+        style={{ backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
 
       {/* Responsive Footer Info */}
       <div className="absolute bottom-6 left-6 right-6 lg:left-10 lg:right-10 flex flex-col sm:flex-row justify-between items-center gap-4 pointer-events-none animate-fade-in" style={{ animationDelay: '1.2s' }}>
         <div className="flex gap-4 lg:gap-8 items-center">
-           <div className="flex flex-col">
-             <span className="text-slate-700 text-[8px] font-mono tracking-widest">ARCHITECTURE</span>
-             <span className="text-slate-500 text-[10px] font-mono tracking-tighter">Dual-Stack Proficiency</span>
-           </div>
+          <div className="flex flex-col">
+            <span className="text-slate-700 text-[8px] font-mono tracking-widest">ARCHITECTURE</span>
+            <span className="text-slate-500 text-[10px] font-mono tracking-tighter">Dual-Stack Proficiency</span>
+          </div>
         </div>
         <div className="text-slate-600 text-[9px] font-mono tracking-[0.2em] lg:tracking-[0.3em] text-center">
           JS_ECOSYSTEM_SPECIALIST

@@ -124,7 +124,7 @@ const round = (v, precision = 3) => parseFloat(v.toFixed(precision));
 const adjust = (v, fMin, fMax, tMin, tMax) => round(tMin + ((tMax - tMin) * (v - fMin)) / (fMax - fMin));
 
 const ProfileCard = React.memo(({
-  avatarUrl = 'https://api.dicebear.com/7.x/avataaars/svg?seed=Hareesh',
+  avatarUrl = '/image.png' || 'https://api.dicebear.com/7.x/avataaars/svg?seed=Hareesh',
   name = 'Hareesh VS',
   title = 'Fullstack Developer',
   handle = 'hareesh_vs'
@@ -230,7 +230,7 @@ const About = () => {
   const technologies = {
     Frontend: ["React", "Tailwind CSS", "JavaScript", "HTML", "CSS"],
     Backend: ["Node.js", "Express.js"],
-    Database: ["MongoDB", "MySQL"],
+    Database: ["MongoDB",], // "MySQL"
     Tools: ["Git", "GitHub", "Postman", "GSAP"]
   };
 
@@ -255,6 +255,7 @@ const About = () => {
             name="Hareesh VS"
             title="Full-Stack Developer"
             handle="hareesh_vs"
+             image="/image.png"
           />
           
           <div className="w-full space-y-4 pt-8 scroll-reveal reveal-fade-up" style={{ transitionDelay: '0.3s' }}>
