@@ -17,6 +17,7 @@ const ProjectUpload = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
+    category:"",
     tags: [],
     liveUrl: "",
     codeUrl: "",
@@ -87,9 +88,9 @@ const ProjectUpload = () => {
   const handleUploadProject = async (e) => {
     e.preventDefault();
 
-    const { title, description, tags, liveUrl, codeUrl, image } = formData;
+    const { title, description, tags, liveUrl, codeUrl, image,category } = formData;
 
-    if (!title || !description || !tags.length || !liveUrl || !codeUrl || !image) {
+    if (!title || !description || !tags.length || !liveUrl || !codeUrl || !image || !category) {
       alert("Please fill all required fields");
       return;
     }
@@ -100,13 +101,14 @@ const ProjectUpload = () => {
       const form = new FormData();
       form.append("title", title);
       form.append("description", description);
+      form.append("category",category)
       form.append("tags", JSON.stringify(tags));
       form.append("liveUrl", liveUrl);
       form.append("codeUrl", codeUrl);
       form.append("image", image);
 
       const res = await axios.post(
-        "https://fiver-portfolio-backend.onrender.com/api/projects/upload",
+        `${import.meta.env.VITE_BACKEND_API}/api/projects/upload`,
         form,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -193,6 +195,17 @@ const ProjectUpload = () => {
                 }
                 className="w-full bg-white/5 p-4 rounded-xl"
               />
+
+              
+              <input
+                placeholder="category "
+                value={formData.category}
+                onChange={(e) =>
+                  setFormData((p) => ({ ...p, category: e.target.value }))
+                }
+                className="w-full bg-white/5 p-4 rounded-xl"
+              />
+
 
               <input
                 placeholder="Technologies (Press Enter)"

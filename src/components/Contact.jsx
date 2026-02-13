@@ -42,9 +42,9 @@ const Contact = () => {
   };
 
   const socialLinks = [
-    { icon: <Github size={20} />, href: "#", label: "GitHub" },
-    { icon: <Linkedin size={20} />, href: "#", label: "LinkedIn" },
-    { icon: <Mail size={20} />, href: "mailto:hello@example.com", label: "Email" }
+    { icon: <Github size={20} />, href: "https://github.com/hareeshvs72", label: "GitHub" },
+    { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/hareesh-vs/", label: "LinkedIn" },
+    { icon: <Mail size={20} />, href: "mailto:@hareeshvs72@gmail.com", label: "Email" }
   ];
 
   return (
@@ -129,7 +129,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs font-mono text-slate-500 uppercase tracking-widest">Email me</p>
-                    <p className="text-white font-medium">hareesh@example.com</p>
+                    <p className="text-white font-medium">hareeshvs72@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -139,7 +139,8 @@ const Contact = () => {
                 <div className="flex gap-3">
                   {socialLinks.map((link, i) => (
                     <a 
-                      key={i} 
+                      key={i}
+                      target='_blank' 
                       href={link.href}
                       className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:text-[#F97316] hover:border-[#F97316]/50 hover:bg-[#F97316]/5 hover:-translate-y-1 transition-all duration-300"
                       aria-label={link.label}

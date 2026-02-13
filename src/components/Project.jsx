@@ -296,7 +296,7 @@ const categories = useMemo(() => {
 
 const handileProjects = async () => {
   try {
-    const res = await axios.get("http://localhost:5000/api/projects");
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_API}/api/projects`);
     setProject(res.data.project || []);
   } catch (error) {
     console.error("Error fetching projects:", error);

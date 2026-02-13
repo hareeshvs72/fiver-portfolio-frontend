@@ -5,6 +5,7 @@ import './App.css'
 import Portfolio from './Portfolio'
 import { Route, Routes } from 'react-router-dom'
 import ProjectUpload from './ProjectUpload'
+import Pnf from './components/Pnf'
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
     <>
     <Routes>
       <Route path='/' element={<Portfolio/>}/>
-            {/* <Route path='/h' element={<Header/>}/> */}
+            <Route path='*' element={<Pnf/>}/>
 
              <Route path='/upload' element={<ProjectUpload/>}/>
 
