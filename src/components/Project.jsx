@@ -6,6 +6,8 @@ import {
   Globe, Server, Cpu, Palette, Zap
 } from 'lucide-react';
 import axios from 'axios';
+const apiUrl = import.meta.env.VITE_BACKEND_API;
+console.log("api url " , apiUrl);
 
 // --- Utility Functions ---
 function hexToRgba(hex, alpha = 1) {
@@ -296,8 +298,10 @@ const categories = useMemo(() => {
 
 const handileProjects = async () => {
   try {
-    const res = await axios.get(`${import.meta.env.VITE_BACKEND_API}/api/projects`);
+        console.log("api url inside " , apiUrl);
+    const res = await axios.get(`${apiUrl}/api/projects`);
     setProject(res.data.project || []);
+
   } catch (error) {
     console.error("Error fetching projects:", error);
   }
