@@ -6,11 +6,16 @@ import Portfolio from './Portfolio'
 import { Route, Routes } from 'react-router-dom'
 import ProjectUpload from './ProjectUpload'
 import Pnf from './components/Pnf'
+import SplashCursor from './components/SplashCursor '
+
 
 function App() {
 
   return (
+
     <>
+        <SplashCursor />
+
     <Routes>
       <Route path='/' element={<Portfolio/>}/>
             <Route path='*' element={<Pnf/>}/>
