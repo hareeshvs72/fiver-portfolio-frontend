@@ -286,11 +286,15 @@ const Project = () => {
 const categories = useMemo(() => {
   const uniqueCategories = [
     ...new Set(
-      project?.map(p => p.category)?.filter(cat => cat && cat.trim() !== "")
+      (project ?? [])
+        .map(p => p?.category?.trim().toLowerCase())
+        .filter(Boolean)
     )
   ];
+
   return ["All", ...uniqueCategories];
 }, [project]);
+
 
 const handileProjects = async () => {
   try {
@@ -316,14 +320,20 @@ const handileProjects = async () => {
 
   const itemsPerPage = 6;
 
-  const filteredProjects = useMemo(() => {
-    return project.filter(p => {
-      const matchesSearch = p.title.toLowerCase().includes(search.toLowerCase()) ||
-        p.description.toLowerCase().includes(search.toLowerCase());
-      const matchesCategory = activeCategory === "All" || p.category === activeCategory;
-      return matchesSearch && matchesCategory;
-    });
-  }, [search, activeCategory,project]);
+const filteredProjects = useMemo(() => {
+  return (project ?? []).filter(p => {
+    const matchesSearch =
+      p.title?.toLowerCase().includes(search.toLowerCase()) ||
+      p.description?.toLowerCase().includes(search.toLowerCase());
+
+    const matchesCategory =
+      activeCategory === "All" ||
+      p.category?.trim().toLowerCase() === activeCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+}, [search, activeCategory, project]);
+
 
   const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
   const currentItems = filteredProjects.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
