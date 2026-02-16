@@ -280,17 +280,13 @@ const Project = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [project, setProject] = useState([])
   // get all projects
-  useEffect(() => {
-  handileProjects();
-}, []);
+
 
   // --- Mock Data ---
 const categories = useMemo(() => {
   const uniqueCategories = [
     ...new Set(
-      project
-        .map(p => p.category)
-        .filter(cat => cat && cat.trim() !== "")
+      project?.map(p => p.category)?.filter(cat => cat && cat.trim() !== "")
     )
   ];
   return ["All", ...uniqueCategories];
@@ -300,13 +296,18 @@ const handileProjects = async () => {
   try {
         console.log("api url inside " , apiUrl);
     const res = await axios.get(`${apiUrl}/api/projects`);
-    setProject(res.data.project || []);
+    console.log(res.data.projects);
+    
+    setProject(res.data.projects);
 
   } catch (error) {
     console.error("Error fetching projects:", error);
   }
 };
 
+  useEffect(() => {
+  handileProjects();
+}, []);
 
   useEffect(() => {
     console.log("projects", project);
