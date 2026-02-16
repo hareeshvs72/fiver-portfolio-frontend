@@ -14,7 +14,7 @@ function App() {
   return (
 
     <>
-        <SplashCursor />
+        {/* <SplashCursor /> */}
 
     <Routes>
       <Route path='/' element={<Portfolio/>}/>
