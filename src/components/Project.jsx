@@ -278,7 +278,117 @@ const Project = () => {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const [project, setProject] = useState([])
+  const [project, setProject] = useState( [
+  {
+    _id: "6964a3f54988620f211bc7f6",
+    title: "Travel Website Landing Page",
+    description: "This is a responsive travel-themed landing page designed to showcase p…",
+    tags: ["HTML", "CSS", "BOOTSTRAP"],
+    liveUrl: "https://funny-cupcake-65ce22.netlify.app/#",
+    codeUrl: "https://github.com/hareeshvs72/travel-website.git",
+    imageUrl: "/ProjectImage/travel.png",
+    createdAt: "2026-01-12T07:34:13.738+00:00",
+    updatedAt: "2026-01-12T07:34:13.738+00:00",
+    __v: 0,
+    category: "FRONTEND"
+  },
+  {
+    _id: "6964a6c84988620f211bc7fa",
+    title: "Movie Webiste",
+    description: "This is a responsive movie entertainment landing page designed to disp…",
+    tags: ["HTML", "CSS", "TAILWIND"],
+    liveUrl: "https://luminous-cupcake-f6fc49.netlify.app/",
+    codeUrl: "https://github.com/hareeshvs72/movie-website.git",
+    imageUrl: "/ProjectImage/movie.png",
+    createdAt: "2026-01-12T07:46:16.829+00:00",
+    updatedAt: "2026-01-12T07:46:16.829+00:00",
+    __v: 0,
+    category: "FRONTEND"
+  },
+  {
+    _id: "696dec777d38fd8e56e7ad2b",
+    title: "Responsive Plant Landing Page with Framer Motion",
+    description: "EcoRem is a responsive landing page developed for sustainable plant br…",
+    tags: ["React", "Framer Motion", "Tailwind CSS"],
+    liveUrl: "https://plant-e-comerce-website-designsad.netlify.app/",
+    codeUrl: "https://github.com/hareeshvs72/Plant-E-comerce-Webiste.git",
+    imageUrl: "/ProjectImage/plantEcomerce.png",
+    createdAt: "2026-01-19T08:33:59.711+00:00",
+    updatedAt: "2026-01-19T08:33:59.711+00:00",
+    __v: 0,
+    category: "FRONTEND"
+  },
+  {
+    _id: "6992b58e7fe622104545b772",
+    title: "Modern Furniture Landing Page",
+    description: "A modern and fully responsive furniture landing page built using pure …",
+    tags: ["HTML", "CSS"],
+    liveUrl: "https://boisterous-arithmetic-a46ffd.netlify.app",
+    codeUrl: "https://github.com/hareeshvs72/furniture-website.git",
+    category: "HTML CSS",
+    imageUrl: "/ProjectImage/furniture.png",
+    createdAt: "2026-02-16T06:13:34.451+00:00",
+    updatedAt: "2026-02-16T06:13:34.451+00:00",
+    __v: 0
+  },
+  {
+    _id: "6992c146da432a423d68316e",
+    title: "Gusto Restaurant Landing Page",
+    description: "A modern and responsive restaurant landing page created using pure HTM…",
+    tags: ["HTML", "CSS", "Tailwind CSS"],
+    liveUrl: "https://frabjous-treacle-dd4fcb.netlify.app/",
+    codeUrl: "https://github.com/hareeshvs72/GUSTO.git",
+    category: "HTML CSS ",
+    imageUrl: "/ProjectImage/gusto.png",
+    createdAt: "2026-02-16T07:03:34.087+00:00",
+    updatedAt: "2026-02-16T07:03:34.087+00:00",
+    __v: 0
+  },
+  {
+    _id: "6992c6d2da432a423d683187",
+    title: "MERN Stack Online Book Store",
+    description: "A full-stack online book store application developed using the MERN st…",
+    tags: [
+      "MongoDB",
+      "Express.js",
+      "React.js",
+      "Node.js",
+      "MERN Stack",
+      "REST API",
+      "Authentication",
+      "Responsive Design"
+    ],
+    liveUrl: "https://front-end-book-store-r2a8.vercel.app/",
+    codeUrl: "https://github.com/hareeshvs72/FrontEnd-BookStore.git",
+    category: "MERN",
+    imageUrl: "/ProjectImage/bookstore.png",
+    createdAt: "2026-02-16T07:27:14.575+00:00",
+    updatedAt: "2026-02-16T07:27:14.575+00:00",
+    __v: 0
+  },
+  {
+    _id: "6992c8badf19be81b7c90fcf",
+    title: "Full Stack MERN Blog Application",
+    description: "A full-stack blog application developed using the MERN stack (MongoDB,…",
+    tags: [
+      "MongoDB",
+      "Express.js",
+      "React.js",
+      "Node.js",
+      "MERN Stack",
+      "REST API",
+      "Authentication",
+      "Responsive Design"
+    ],
+    liveUrl: "https://blog-mern-frontend-zeb1.vercel.app/",
+    codeUrl: "https://github.com/hareeshvs72/Blog-MERN-FRONTEND.git",
+    category: "MERN",
+    imageUrl: "/ProjectImage/blogMERN.png",
+    createdAt: "2026-02-16T07:32:16.983+00:00",
+    updatedAt: "2026-02-16T07:32:16.983+00:00",
+    __v: 0
+  }
+])
   // get all projects
 
 
@@ -296,22 +406,22 @@ const categories = useMemo(() => {
 }, [project]);
 
 
-const handileProjects = async () => {
-  try {
-        console.log("api url inside " , apiUrl);
-    const res = await axios.get(`${apiUrl}/api/projects`);
-    console.log(res.data.projects);
+// const handileProjects = async () => {
+//   try {
+//         console.log("api url inside " , apiUrl);
+//     const res = await axios.get(`${apiUrl}/api/projects`);
+//     console.log(res.data.projects);
     
-    setProject(res.data.projects);
+//     setProject(res.data.projects);
 
-  } catch (error) {
-    console.error("Error fetching projects:", error);
-  }
-};
+//   } catch (error) {
+//     console.error("Error fetching projects:", error);
+//   }
+// };
 
-  useEffect(() => {
-  handileProjects();
-}, []);
+//   useEffect(() => {
+//   handileProjects();
+// }, []);
 
   useEffect(() => {
     console.log("projects", project);
