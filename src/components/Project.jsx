@@ -387,7 +387,35 @@ const Project = () => {
     createdAt: "2026-02-16T07:32:16.983+00:00",
     updatedAt: "2026-02-16T07:32:16.983+00:00",
     __v: 0
-  }
+  },
+  {
+  _id: "69c0d9f90811a56fd2ea73ce",
+  title: "AI content generator",
+  description: `The AI Content Generator is a full-stack web application that leverages artificial intelligence to generate high-quality, human-like content based on user input. Users can enter prompts such as blog topics, social media ideas, or product descriptions, and the system instantly produces relevant and engaging content.
+
+The application is built using modern web technologies, with a responsive frontend and a scalable backend integrated with an AI API for natural language processing. It provides a seamless user experience, allowing users to generate, view, and reuse content efficiently.
+
+Key features include real-time content generation, customizable prompts, and a clean, user-friendly interface. The system is designed to improve productivity for content creators, marketers, and developers by reducing manual writing effort.`,
+  tags: [
+    "Angular",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "OpenAI API",
+    "TypeScript",
+    "HTML",
+    "CSS",
+    "Stripe + WebHook",
+    "Bootstrap"
+  ],
+  liveUrl: "https://ai-content-generator-angular.vercel.app/",
+  codeUrl: "https://github.com/hareeshvs72/ai-Content-generator-Angular",
+  category: "MEAN",
+  imageUrl: "/ProjectImage/AiContentGenerator.png",
+  createdAt: "2026-03-23T06:13:13.697Z",
+  updatedAt: "2026-03-23T06:13:13.697Z",
+  __v: 0
+}
 ])
   // get all projects
 
