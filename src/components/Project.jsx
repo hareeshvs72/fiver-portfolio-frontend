@@ -415,6 +415,61 @@ Key features include real-time content generation, customizable prompts, and a c
   createdAt: "2026-03-23T06:13:13.697Z",
   updatedAt: "2026-03-23T06:13:13.697Z",
   __v: 0
+},
+{
+  _id: "6992c8badf19be81b7c90fd0",
+  title: "Employee Management System",
+  description:
+    "A full-stack Employee Management System built using the MERN stack, featuring secure JWT authentication, role-based access control, employee management, department management, attendance tracking, leave management, analytics dashboard, and a responsive user interface powered by the Context API for efficient state management.",
+  tags: [
+    "MongoDB",
+    "Express.js",
+    "React.js",
+    "Node.js",
+    "MERN Stack",
+    "JWT Authentication",
+    "Context API",
+    "Role-Based Access Control",
+    "REST API",
+    "Tailwind CSS",
+    "Dashboard",
+    "Responsive Design"
+  ],
+  liveUrl: "https://employee-managemnet-system-frontend.vercel.app",
+  codeUrl: "https://github.com/hareeshvs72",
+  category: "MERN",
+  imageUrl: "/ProjectImage/ems.png",
+  createdAt: "2026-07-25T18:30:00.000+00:00",
+  updatedAt: "2026-07-25T18:30:00.000+00:00",
+  __v: 0
+},
+{
+  _id: "6992c8badf19be81b7c90fd1",
+  title: "Aqua Store E-Commerce",
+  description:
+    "A production-ready MERN e-commerce application for buying aquarium fish and accessories, featuring Clerk authentication, Stripe payment gateway, role-based admin panel, product and category management, shopping cart, secure checkout, order tracking, inventory management, analytics dashboard, and a fully responsive modern user interface.",
+  tags: [
+    "MongoDB",
+    "Express.js",
+    "React.js",
+    "Node.js",
+    "MERN Stack",
+    "Clerk Authentication",
+    "Stripe Payments",
+    "Context API",
+    "REST API",
+    "Tailwind CSS",
+    "Admin Dashboard",
+    "Responsive Design",
+    "E-Commerce"
+  ],
+  liveUrl: "https://aqua-fish-ecomerce-frontend.vercel.app/",
+  codeUrl: "https://github.com/hareeshvs72",
+  category: "MERN",
+  imageUrl: "/ProjectImage/aquaStore.png",
+  createdAt: "2026-07-25T18:45:00.000+00:00",
+  updatedAt: "2026-07-25T18:45:00.000+00:00",
+  __v: 0
 }
 ])
   // get all projects
