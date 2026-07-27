@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Mail, Github, Linkedin, Send, MessageSquare } from 'lucide-react';
-
+import { sendContactAPI } from "../services/contactAPI";
+import { toast } from "react-toastify";
 /**
  * CONTACT COMPONENT (AURORA ANIMATED VERSION)
  * ------------------------------------------------------------------
@@ -32,15 +33,36 @@ const Contact = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormState({ name: '', email: '', message: '' });
-    }, 1500);
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  try {
+    setIsSubmitting(true);
+
+    const body = {
+      name: formState.name,
+      email: formState.email,
+      subject: "Portfolio Contact",
+      message: formState.message,
+    };
+
+    const result = await sendContactAPI(body);
+
+    if (result.status === 200) {
+      toast.success(result.data.message);
+
+      setFormState({
+        name: "",
+        email: "",
+        message: "",
+      });
+    }
+  } catch (error) {
+    toast.error(error.message || "Failed to send message.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
   const socialLinks = [
     { icon: <Github size={20} />, href: "https://github.com/hareeshvs72", label: "GitHub" },
     { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/hareesh-vs/", label: "LinkedIn" },
